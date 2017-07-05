@@ -20,7 +20,7 @@ class NewItemForm extends Component {
           value={this.state.description}
         />
         <View style={{  flexDirection: 'row', flexWrap: 'wrap' }}>
-          <Button onPress={} style={styles.addButton} textStyle={{ color: 'white' }}>
+          <Button onPress={() => this.props.onFormSubmit(this.state.description)} style={styles.addButton} textStyle={{ color: 'white' }}>
             Add
           </Button>
           <Button style={styles.cancelButton} textStyle={{ color: 'white' }}>

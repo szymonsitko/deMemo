@@ -16,7 +16,7 @@ const { height, width } = Dimensions.get('window');
 
 class Page extends Component {
   state = {
-    input: '',
+    item: '',
   }
 
   componentWillMount() {
@@ -31,14 +31,18 @@ class Page extends Component {
     this.clearTimeout();
     this.setState({
       timeout: setTimeout(() => {
-        this.setState({ input: text });
+        this.setState({ item: text });
       }, 1500)
     });
   }
 
+  storeFormValues(description) {
+    console.log(`Item ${this.state.item} Description ${description}`);
+  }
+
   checkUserInputWithDatastore() {
     // Just an example, but really should include database query here!
-    if (this.state.input) {
+    if (this.state.item) {
       return true;
     } else {
       return false;
@@ -54,7 +58,7 @@ class Page extends Component {
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
-        {this.checkUserInputWithDatastore() ? <NewItemForm>{this.state.input}</NewItemForm> : <Text>Waiting..!</Text>}
+        {this.checkUserInputWithDatastore() ? <NewItemForm onFormSubmit={this.storeFormValues.bind(this)}>{this.state.item}</NewItemForm> : <Text>Waiting..!</Text>}
       </View>
     );
   };
