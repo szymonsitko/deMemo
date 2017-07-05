@@ -6,23 +6,25 @@ import {
   Dimensions,
   Animated
 } from 'react-native';
-import FadeIn from '../components/FadeIn';
+import { connect } from 'react-redux';
+import Realm from 'realm';
+import { initializeDatabaseObject } from '../actions';
+import { realmDatabase } from '../lib/database';
+import NewItemForm from '../components/NewItemForm';
 
 const { height, width } = Dimensions.get('window');
 
-export class Page extends Component {
+class Page extends Component {
   state = {
     input: '',
   }
 
-  clearTimeout() {
-    clearInterval(this.state.timeout);
+  componentWillMount() {
+    this.props.initializeDatabaseObject();
   }
 
-  renderItemBasedOnUserInput() {
-    return (
-        <Text>{this.state.input}</Text>
-    );
+  clearTimeout() {
+    clearInterval(this.state.timeout);
   }
 
   onUserTyping({ text }) {
@@ -34,6 +36,15 @@ export class Page extends Component {
     });
   }
 
+  checkUserInputWithDatastore() {
+    // Just an example, but really should include database query here!
+    if (this.state.input) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,7 +54,7 @@ export class Page extends Component {
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
-        {this.renderItemBasedOnUserInput()}
+        {this.checkUserInputWithDatastore() ? <NewItemForm>{this.state.input}</NewItemForm> : <Text>Waiting..!</Text>}
       </View>
     );
   };
@@ -65,3 +76,9 @@ const styles = {
     width: width * .75
   }
 };
+
+const mapStateToProps = ({ database }) => {
+  return database;
+}
+
+export default connect(mapStateToProps, { initializeDatabaseObject })(Page);

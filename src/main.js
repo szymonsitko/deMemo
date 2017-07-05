@@ -5,12 +5,19 @@ import {
   View,
   Dimensions
 } from 'react-native';
-import { Page } from './containers'
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+import ReduxThunk from 'redux-thunk';
+import Page from './containers/Page';
 
 class Organiser extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Page />
+      <Provider store={store}>
+        <Page />
+      </Provider>
     );
   }
 }
