@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Realm from 'realm';
-import { initializeDatabaseObject } from '../actions';
+import { initializeDatabaseObject, addNewDatabaseItem } from '../actions';
 import { realmDatabase } from '../lib/database';
+import { DATABASE_NAME } from '../constants';
 import NewItemForm from '../components/NewItemForm';
 
 const { height, width } = Dimensions.get('window');
@@ -36,18 +37,26 @@ class Page extends Component {
     });
   }
 
-  storeFormValues(description) {
-    console.log(`Item ${this.state.item} Description ${description}`);
+  // Default label rendering function
+  renderDefaultLabel() {
+    return <Text>Start typing to query history.</Text>;
   }
 
-  checkUserInputWithDatastore() {
-    // Just an example, but really should include database query here!
-    if (this.state.item) {
-      return true;
-    } else {
-      return false;
-    }
+  // CREATE new record actions related!
+  renderNewItemCreateForm() {
+    return (
+      <NewItemForm onFormSubmit={this.storeFormValues.bind(this)}>{this.state.item}</NewItemForm>
+    );
   }
+  // Saving new item into the database..
+  storeFormValues(description) {
+    this.props.addNewDatabaseItem(this.state.item, description);
+    this.setState({ item: '' })
+  }
+
+  // READ existing records actions related!
+  
+
 
   render() {
     return (
@@ -58,7 +67,7 @@ class Page extends Component {
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
-        {this.checkUserInputWithDatastore() ? <NewItemForm onFormSubmit={this.storeFormValues.bind(this)}>{this.state.item}</NewItemForm> : <Text>Waiting..!</Text>}
+        {this.state.item ? this.renderNewItemCreateForm() : this.renderDefaultLabel()}
       </View>
     );
   };
@@ -85,4 +94,7 @@ const mapStateToProps = ({ database }) => {
   return database;
 }
 
-export default connect(mapStateToProps, { initializeDatabaseObject })(Page);
+export default connect(mapStateToProps, {
+  initializeDatabaseObject,
+  addNewDatabaseItem
+})(Page);

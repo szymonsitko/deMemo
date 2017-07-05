@@ -7,7 +7,8 @@ export const createDatabaseSchema = () => {
     primaryKey: 'title',
     properties: {
         title: 'string',
-        content: {type: 'string', default: 'Item description here'},
+        content: {type: 'string', default: 'Empty description'},
+        date: 'int',
     },
   };
   return Items.schema;
