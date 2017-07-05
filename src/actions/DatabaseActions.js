@@ -23,7 +23,7 @@ export const addNewDatabaseItem = (title, description) => {
     realmDatabase.write(() => {
     savedItems = realmDatabase.create(DATABASE_NAME, {
         title: title,
-        description: description,
+        content: description,
         date: Date.now()
       });
     });

@@ -12,6 +12,7 @@ import { initializeDatabaseObject, addNewDatabaseItem } from '../actions';
 import { realmDatabase } from '../lib/database';
 import { DATABASE_NAME } from '../constants';
 import NewItemForm from '../components/NewItemForm';
+import Item from '../components/Item';
 
 const { height, width } = Dimensions.get('window');
 
@@ -42,20 +43,33 @@ class Page extends Component {
     return <Text>Start typing to query history.</Text>;
   }
 
-  // CREATE new record actions related!
-  renderNewItemCreateForm() {
-    return (
-      <NewItemForm onFormSubmit={this.storeFormValues.bind(this)}>{this.state.item}</NewItemForm>
-    );
-  }
   // Saving new item into the database..
   storeFormValues(description) {
     this.props.addNewDatabaseItem(this.state.item, description);
     this.setState({ item: '' })
   }
 
-  // READ existing records actions related!
-  
+  resetInputValues() {
+    this.setState({ item: '' });
+  }
+
+  // READ existing records and perform certain actions based on query results!
+  renderItem() {
+    const items = realmDatabase.objects(DATABASE_NAME);
+    const query = items.filtered(`title = "${this.state.item}"`);
+    if (Object.keys(query).length === 0) {
+      return (
+        <NewItemForm
+          onFormSubmit={this.storeFormValues.bind(this)}
+          onValuesReset={this.resetInputValues.bind(this)}
+        >{this.state.item}
+        </NewItemForm>
+      );
+    } else {
+      // Here space for the particular item card
+      return <Item>{query[0]}</Item>;
+    }
+  }
 
 
   render() {
@@ -67,7 +81,7 @@ class Page extends Component {
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
-        {this.state.item ? this.renderNewItemCreateForm() : this.renderDefaultLabel()}
+        {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
       </View>
     );
   };
@@ -98,3 +112,6 @@ export default connect(mapStateToProps, {
   initializeDatabaseObject,
   addNewDatabaseItem
 })(Page);
+
+
+// {this.state.item ? this.renderNewItemCreateForm() : this.renderDefaultLabel()}

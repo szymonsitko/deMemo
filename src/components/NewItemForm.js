@@ -23,7 +23,7 @@ class NewItemForm extends Component {
           <Button onPress={() => this.props.onFormSubmit(this.state.description)} style={styles.addButton} textStyle={{ color: 'white' }}>
             Add
           </Button>
-          <Button style={styles.cancelButton} textStyle={{ color: 'white' }}>
+          <Button onPress={() => this.props.onValuesReset()} style={styles.cancelButton} textStyle={{ color: 'white' }}>
             Cancel
           </Button>
         </View>
