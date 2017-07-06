@@ -2,21 +2,28 @@ import Realm from 'realm';
 import {
   INITIALIAZE_DATABASE_OBJECT,
   DATABASE_ITEMS_QUERY,
-  RESET_DATABASE_QUERY
+  RESET_DATABASE_QUERY,
+  DATABASE_ALL_ITEMS_QUERY
 } from './types';
 import { DATABASE_NAME } from '../constants';
 import { createDatabaseSchema, realmDatabase } from '../lib/database';
 
+const createTitlesArray = databaseQuery => {
+  let titlesArray = [];
+  for (let i = 0; i < databaseQuery.length; i++ ) {
+    titlesArray.push(databaseQuery[i].title);
+  }
+  return titlesArray;
+}
+
 export const initializeDatabaseObject = () => {
   const databaseSchema = createDatabaseSchema();
   const realm = new Realm({schema: [databaseSchema]});
-
-  // Control query
-  console.log(realm.objects('Items'));
-
+  const allRecordsQuery = realm.objects(DATABASE_NAME);
+  const titlesArray = createTitlesArray(allRecordsQuery);
   return {
     type: INITIALIAZE_DATABASE_OBJECT,
-    payload: databaseSchema
+    payload: { databaseSchema, allRecordsQuery, titlesArray }
   }
 }
 
@@ -32,15 +39,21 @@ export const addNewDatabaseItem = (title, description) => {
   }
 }
 
+export const getAllRecords = () => {
+  const items = realmDatabase.objects(DATABASE_NAME);
+  const titlesArray = createTitlesArray(items);
+  return {
+    type: DATABASE_ALL_ITEMS_QUERY,
+    payload: { items, titlesArray }
+  };
+}
+
 export const queryDatabase = itemTitle => {
   let queryItems = {};
   const items = realmDatabase.objects(DATABASE_NAME);
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].title.contains(itemTitle)) {
-      queryItems[i] = {
-        title: items[i].title, content: items[i].content, date: items[i].date
-      };
-    };
+  const record = items.filtered(`title = "${itemTitle}"`);
+  if (Object.keys(record).length > 0) {
+    queryItems[0] = record[0];
   }
   return {
     type: DATABASE_ITEMS_QUERY,

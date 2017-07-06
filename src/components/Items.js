@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { View, ScrollView, ListView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import Button from 'apsl-react-native-button';
+import {
+  View,
+  ScrollView,
+  ListView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TextInput
+} from 'react-native';
 
 class Items extends Component {
   constructor(props) {
@@ -9,12 +16,8 @@ class Items extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(this.props.items),
-
+      input: ''
     };
-  }
-
-  _onPressAddressList(data) {
-    console.log(data);
   }
 
   renderRow(data) {
@@ -28,10 +31,36 @@ class Items extends Component {
   renderFooter() {
     return (
       <View>
-        <Button onPress={() => {this.props.onResetQuery()}}>Add New</Button>
-        <Button onPress={() => {this.props.resetInput()}}>Clear List</Button>
+        <TextInput
+          onChangeText={(input) => this.onUserTyping(input)}
+        />
+        <Text onPress={() => this.props.closeWindow()}>Close</Text>
       </View>
     )
+  }
+
+  clearTimeout() {
+    clearInterval(this.state.timeout);
+  }
+
+  onUserTyping(text) {
+    this.clearTimeout();
+    this.setState({
+      timeout: setTimeout(() => {
+        this.setState({ input: text });
+        // Logic here!
+        let newDataStore = [];
+
+        for (let i = 0; i < this.props.items.length; i++) {
+          if (this.props.items[i].contains(this.state.input)) {
+            newDataStore.push(this.props.items[i]);
+          }
+        }
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({ dataSource: ds.cloneWithRows(newDataStore) });
+      }, 500)
+    });
+
   }
 
   render() {
@@ -42,6 +71,7 @@ class Items extends Component {
           dataSource={this.state.dataSource}
           renderRow={(data) => this.renderRow(data)}
           renderFooter={this.renderFooter.bind(this)}
+          enableEmptySections={true}
         />
       </ScrollView>
       );

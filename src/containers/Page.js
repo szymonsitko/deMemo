@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   Dimensions,
-  Animated
+  Animated,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import Realm from 'realm';
@@ -13,19 +14,22 @@ import {
   initializeDatabaseObject,
   addNewDatabaseItem,
   queryDatabase,
-  resetQuery
+  resetQuery,
+  getAllRecords
 } from '../actions';
 import { realmDatabase } from '../lib/database';
 import { DATABASE_NAME } from '../constants';
 import NewItemForm from '../components/NewItemForm';
 import Item from '../components/Item';
 import Items from '../components/Items';
+import ResultsScreen from '../components/ResultsScreen';
 
 const { height, width } = Dimensions.get('window');
 
 class Page extends Component {
   state = {
     item: '',
+    showRecordsPage: false
   }
 
   componentWillMount() {
@@ -41,10 +45,9 @@ class Page extends Component {
     this.setState({
       timeout: setTimeout(() => {
         this.setState({ item: text });
+        this.props.queryDatabase(text);
       }, 500)
     });
-    this.resetDatabaseQuery();
-    this.props.queryDatabase(text);
   }
 
   // Default label rendering function
@@ -69,6 +72,7 @@ class Page extends Component {
   // READ existing records and perform certain actions based on query results!
   renderItem() {
     const { query } = this.props;
+    console.log(query);
     if (Object.keys(query).length === 0) {
       return (
         <NewItemForm
@@ -78,24 +82,18 @@ class Page extends Component {
         </NewItemForm>
       );
     } else {
-      if (Object.keys(query).length > 1) {
-        let keys = Object.keys(query);
-        let dataArray = [];
-        for (let i = 0; i < Object.keys(query).length; i++) {
-          console.log(query[keys[i]].title);
-          dataArray.push(query[keys[i]].title);
-        }
+
+      if (Object.keys(query).length === 1) {
+        const itemData = query[0];
         return (
-          <View>
-            <Text>Records found for {this.state.item}</Text>
-            <Items
-              onResetQuery={this.resetDatabaseQuery.bind(this)}
-              resetInput={this.resetInputValues.bind(this)}
-              items={dataArray} />
-          </View>
+          <Item title={itemData.title} content={itemData.content} date={itemData.date} />
         );
       }
     }
+  }
+
+  closeResultsPage() {
+    this.setState({ showRecordsPage: false });
   }
 
   render() {
@@ -108,6 +106,16 @@ class Page extends Component {
           onChangeText={(text) => this.onUserTyping({text})}
         />
         {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
+        <ResultsScreen
+          showResultsPage={this.state.showRecordsPage}
+          closeResultsPage={this.closeResultsPage.bind(this)}
+        />
+        <Text
+          style={styles.listBottomButton}
+          onPress={() => this.setState({ showRecordsPage: true })}
+        >
+        Click me
+        </Text>
       </View>
     );
   };
@@ -133,6 +141,15 @@ const styles = {
     borderColor: '#e60000',
     width: 100,
     marginLeft: 2
+  },
+  listBottomButton: {
+    flex: 1,
+    textAlign: 'center',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    fontSize: 18,
   }
 };
 
@@ -144,5 +161,6 @@ export default connect(mapStateToProps, {
   initializeDatabaseObject,
   addNewDatabaseItem,
   queryDatabase,
-  resetQuery
+  resetQuery,
+  getAllRecords
 })(Page);
