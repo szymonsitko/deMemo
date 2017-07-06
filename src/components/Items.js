@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ListView, StyleSheet, Text } from 'react-native';
+import { View, ScrollView, ListView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Button from 'apsl-react-native-button';
 
 class Items extends Component {
@@ -13,11 +13,15 @@ class Items extends Component {
     };
   }
 
+  _onPressAddressList(data) {
+    console.log(data);
+  }
+
   renderRow(data) {
     return (
-      <View>
-        <Text style={styles.singleRow} onPress={() => console.log(data)}>{data}</Text>
-      </View>
+      <TouchableOpacity onPress={() => console.log(data)}>
+        <Text style={styles.singleRow}>{data}</Text>
+      </TouchableOpacity>
     )
   }
 
@@ -25,20 +29,21 @@ class Items extends Component {
     return (
       <View>
         <Button onPress={() => {this.props.onResetQuery()}}>Add New</Button>
+        <Button onPress={() => {this.props.resetInput()}}>Clear List</Button>
       </View>
     )
   }
 
   render() {
     return (
-      <View>
+      <ScrollView>
         <ListView
           style={styles.container}
           dataSource={this.state.dataSource}
           renderRow={(data) => this.renderRow(data)}
           renderFooter={this.renderFooter.bind(this)}
         />
-      </View>
+      </ScrollView>
       );
     }
   }

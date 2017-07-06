@@ -43,6 +43,7 @@ class Page extends Component {
         this.setState({ item: text });
       }, 500)
     });
+    this.resetDatabaseQuery();
     this.props.queryDatabase(text);
   }
 
@@ -77,16 +78,20 @@ class Page extends Component {
         </NewItemForm>
       );
     } else {
-      if (Object.keys(query).length >= 1) {
+      if (Object.keys(query).length > 1) {
         let keys = Object.keys(query);
         let dataArray = [];
         for (let i = 0; i < Object.keys(query).length; i++) {
+          console.log(query[keys[i]].title);
           dataArray.push(query[keys[i]].title);
         }
         return (
           <View>
             <Text>Records found for {this.state.item}</Text>
-            <Items onResetQuery={this.resetDatabaseQuery.bind(this)} items={dataArray} />
+            <Items
+              onResetQuery={this.resetDatabaseQuery.bind(this)}
+              resetInput={this.resetInputValues.bind(this)}
+              items={dataArray} />
           </View>
         );
       }
