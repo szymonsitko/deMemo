@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 class Item extends Component {
   render() {
-    const { title, content, date } = this.props.children;
+    const { title, content, date } = this.props;
     const cd = new Date(date);
     return (
       <View>

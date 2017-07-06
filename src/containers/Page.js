@@ -8,11 +8,18 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Realm from 'realm';
-import { initializeDatabaseObject, addNewDatabaseItem } from '../actions';
+import Button from 'apsl-react-native-button';
+import {
+  initializeDatabaseObject,
+  addNewDatabaseItem,
+  queryDatabase,
+  resetQuery
+} from '../actions';
 import { realmDatabase } from '../lib/database';
 import { DATABASE_NAME } from '../constants';
 import NewItemForm from '../components/NewItemForm';
 import Item from '../components/Item';
+import Items from '../components/Items';
 
 const { height, width } = Dimensions.get('window');
 
@@ -34,8 +41,9 @@ class Page extends Component {
     this.setState({
       timeout: setTimeout(() => {
         this.setState({ item: text });
-      }, 1500)
+      }, 500)
     });
+    this.props.queryDatabase(text);
   }
 
   // Default label rendering function
@@ -43,20 +51,23 @@ class Page extends Component {
     return <Text>Start typing to query history.</Text>;
   }
 
-  // Saving new item into the database..
-  storeFormValues(description) {
-    this.props.addNewDatabaseItem(this.state.item, description);
-    this.setState({ item: '' })
-  }
-
   resetInputValues() {
     this.setState({ item: '' });
   }
 
+  // Saving new item into the database..
+  storeFormValues(description) {
+    this.props.addNewDatabaseItem(this.state.item, description);
+    this.resetInputValues();
+  }
+
+  resetDatabaseQuery() {
+    this.props.resetQuery();
+  }
+
   // READ existing records and perform certain actions based on query results!
   renderItem() {
-    const items = realmDatabase.objects(DATABASE_NAME);
-    const query = items.filtered(`title = "${this.state.item}"`);
+    const { query } = this.props;
     if (Object.keys(query).length === 0) {
       return (
         <NewItemForm
@@ -66,11 +77,21 @@ class Page extends Component {
         </NewItemForm>
       );
     } else {
-      // Here space for the particular item card
-      return <Item>{query[0]}</Item>;
+      if (Object.keys(query).length >= 1) {
+        let keys = Object.keys(query);
+        let dataArray = [];
+        for (let i = 0; i < Object.keys(query).length; i++) {
+          dataArray.push(query[keys[i]].title);
+        }
+        return (
+          <View>
+            <Text>Records found for {this.state.item}</Text>
+            <Items onResetQuery={this.resetDatabaseQuery.bind(this)} items={dataArray} />
+          </View>
+        );
+      }
     }
   }
-
 
   render() {
     return (
@@ -101,6 +122,12 @@ const styles = {
   },
   input: {
     width: width * .75
+  },
+  addButton: {
+    backgroundColor: '#ff4d4d',
+    borderColor: '#e60000',
+    width: 100,
+    marginLeft: 2
   }
 };
 
@@ -110,8 +137,7 @@ const mapStateToProps = ({ database }) => {
 
 export default connect(mapStateToProps, {
   initializeDatabaseObject,
-  addNewDatabaseItem
+  addNewDatabaseItem,
+  queryDatabase,
+  resetQuery
 })(Page);
-
-
-// {this.state.item ? this.renderNewItemCreateForm() : this.renderDefaultLabel()}

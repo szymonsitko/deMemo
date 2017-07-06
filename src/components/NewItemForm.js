@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Button from 'apsl-react-native-button';
 
-
-
 class NewItemForm extends Component {
   state = {
     description: ''
@@ -54,26 +52,3 @@ const styles = {
 }
 
 export default NewItemForm;
-// export const NewItemForm = ({ children }) => {
-//     return (
-//       <View>
-//         <Text>New Item Title</Text>
-//         <TextInput
-//           value={children}
-//         />
-//         <Text>Description</Text>
-//         <TextInput
-//           multiline={true}
-//           value={props.text}
-//         />
-//         <View style={{  flexDirection: 'row', flexWrap: 'wrap' }}>
-//           <Button onPress={() => console.log(value)} style={styles.addButton} textStyle={{ color: 'white' }}>
-//             Add
-//           </Button>
-//           <Button style={styles.cancelButton} textStyle={{ color: 'white' }}>
-//             Cancel
-//           </Button>
-//         </View>
-//       </View>
-//     )
-// }
