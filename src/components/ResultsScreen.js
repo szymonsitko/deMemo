@@ -28,12 +28,12 @@ class ResultsScreen extends Component {
             <View style={styles.recordsContainer}>
               <Text style={styles.recordsLabel}>List of Items</Text>
             </View>
-            <ScrollView style={styles.itemsList}>
+            <View style={styles.itemsList}>
             <Items
               items={this.props.all_records}
               displayItemDetails={this.props.displayItemDetails}
             />
-            </ScrollView>
+            </View>
           </View>
          </View>
         </Modal>

@@ -27,7 +27,7 @@ const styles = {
   },
   didYouKnowContent: {
     // Dimensions & positioning
-    marginTop: 8,
+    marginTop: 12,
     textAlign: 'center',
     width: width * .75,
   }

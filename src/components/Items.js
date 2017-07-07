@@ -32,19 +32,6 @@ class Items extends Component {
     )
   }
 
-  renderHeader() {
-    return (
-      <View>
-        <TextInput
-          style={styles.searchItemsInput}
-          underlineColorAndroid='rgba(0,0,0,0)'
-          placeholder="Type to search from list"
-          onChangeText={(input) => this.onUserTyping(input)}
-        />
-      </View>
-    )
-  }
-
   clearTimeout() {
     clearInterval(this.state.timeout);
   }
@@ -68,14 +55,23 @@ class Items extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.listViewContainer}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(data) => this.renderRow(data)}
-          renderHeader={this.renderHeader.bind(this)}
-          enableEmptySections={true}
-        />
-      </ScrollView>
+      <View>
+        <View style={styles.stickyHeader}>
+          <TextInput
+            style={styles.searchItemsInput}
+            underlineColorAndroid='rgba(0,0,0,0)'
+            placeholder="Type to search from list"
+            onChangeText={(input) => this.onUserTyping(input)}
+          />
+        </View>
+        <ScrollView style={styles.listViewContainer}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(data) => this.renderRow(data)}
+            enableEmptySections={true}
+          />
+        </ScrollView>
+      </View>
       );
     }
   }
@@ -88,38 +84,27 @@ const styles = {
   listViewContainer: {
     // Dimensions & positioning
     marginTop: 6,
-    maxHeight: height * .8,
+    maxHeight: height * .7,
   },
   searchItemsInput: {
     // Dimensions & positioning
     width: width * .75,
     height: 40,
     borderWidth: 1.5,
-    marginTop: 2,
-    marginBottom: 2,
+    marginTop: 12,
+    marginBottom: 8,
     // Colors & styling
     color: '#00001a',
     borderBottomColor: '#484848'
   },
-  addButton: {
-    // Dimensions & positioning
-    width: 100,
-    marginRight: 2,
-    // Colors & styling
-    backgroundColor: '#33bbff',
-    borderColor: '#0099e6',
-  },
   singleRow: {
     // Dimensions & positioning
-    margin: 2,
+    margin: 4,
     // Colors & styling
-    fontSize: 14
-  },
-  buttons: {
-    // Dimensions & positioning
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 18,
+    color: '#00364d',
+    fontWeight: 'bold'
+
   },
 };
 
