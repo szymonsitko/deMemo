@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
+import { createTitlesArray } from '../lib/database';
 
 class Items extends Component {
   constructor(props) {
@@ -15,14 +16,14 @@ class Items extends Component {
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.items),
+      dataSource: ds.cloneWithRows(createTitlesArray(this.props.items)),
       input: ''
     };
   }
 
   renderRow(data) {
     return (
-      <TouchableOpacity onPress={() => console.log(data)}>
+      <TouchableOpacity onPress={() => this.props.displayItemDetails(data)}>
         <Text style={styles.singleRow}>{data}</Text>
       </TouchableOpacity>
     )
@@ -34,7 +35,7 @@ class Items extends Component {
         <TextInput
           onChangeText={(input) => this.onUserTyping(input)}
         />
-        <Text onPress={() => this.props.closeWindow()}>Close</Text>
+        <Text style={styles.closeButton} onPress={() => this.props.closeWindow()}>Close</Text>
       </View>
     )
   }
@@ -48,19 +49,16 @@ class Items extends Component {
     this.setState({
       timeout: setTimeout(() => {
         this.setState({ input: text });
-        // Logic here!
         let newDataStore = [];
-
         for (let i = 0; i < this.props.items.length; i++) {
-          if (this.props.items[i].contains(this.state.input)) {
-            newDataStore.push(this.props.items[i]);
-          }
-        }
+          if (this.props.items[i].title.contains(this.state.input)) {
+            newDataStore.push(this.props.items[i].title);
+          };
+        };
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({ dataSource: ds.cloneWithRows(newDataStore) });
+        this.setState({ dataSource: ds.cloneWithRows(newDataStore)});
       }, 500)
     });
-
   }
 
   render() {
@@ -92,6 +90,11 @@ const styles = {
   singleRow: {
     margin: 2,
     fontSize: 14
+  },
+  closeButton: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 18,
   }
 };
 

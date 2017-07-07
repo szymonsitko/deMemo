@@ -15,3 +15,11 @@ export const createDatabaseSchema = () => {
 }
 
 export const realmDatabase = new Realm({schema: [createDatabaseSchema()]});
+
+export const createTitlesArray = databaseQuery => {
+  let titlesArray = [];
+  for (let i = 0; i < databaseQuery.length; i++ ) {
+    titlesArray.push(databaseQuery[i].title);
+  }
+  return titlesArray;
+}

@@ -8,17 +8,15 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import Realm from 'realm';
 import Button from 'apsl-react-native-button';
 import {
   initializeDatabaseObject,
   addNewDatabaseItem,
   queryDatabase,
   resetQuery,
-  getAllRecords
+  getAllRecords,
+  removeDatabaseItem
 } from '../actions';
-import { realmDatabase } from '../lib/database';
-import { DATABASE_NAME } from '../constants';
 import NewItemForm from '../components/NewItemForm';
 import Item from '../components/Item';
 import Items from '../components/Items';
@@ -29,7 +27,8 @@ const { height, width } = Dimensions.get('window');
 class Page extends Component {
   state = {
     item: '',
-    showRecordsPage: false
+    showRecordsPage: false,
+    editItem: false
   }
 
   componentWillMount() {
@@ -69,10 +68,19 @@ class Page extends Component {
     this.props.resetQuery();
   }
 
+  deleteDatabaseItem(item) {
+    this.props.removeDatabaseItem(item);
+    this.resetInputValues();
+  }
+
+  editDatabaseItem(item) {
+    this.props.queryDatabase(item);
+    this.setState({ editItem: true })
+  }
+
   // READ existing records and perform certain actions based on query results!
   renderItem() {
     const { query } = this.props;
-    console.log(query);
     if (Object.keys(query).length === 0) {
       return (
         <NewItemForm
@@ -82,11 +90,15 @@ class Page extends Component {
         </NewItemForm>
       );
     } else {
-
       if (Object.keys(query).length === 1) {
         const itemData = query[0];
         return (
-          <Item title={itemData.title} content={itemData.content} date={itemData.date} />
+          <Item
+            onDelete={this.deleteDatabaseItem.bind(this)}
+            title={itemData.title}
+            content={itemData.content}
+            date={itemData.date}
+          />
         );
       }
     }
@@ -94,6 +106,13 @@ class Page extends Component {
 
   closeResultsPage() {
     this.setState({ showRecordsPage: false });
+  }
+
+  displaySingleItem(itemName) {
+    // Make sure that the result screen is closed, this is on case if function is
+    // invoked from ResultsScreen Modal
+    this.closeResultsPage();
+    this.onUserTyping({ text: itemName });
   }
 
   render() {
@@ -107,6 +126,7 @@ class Page extends Component {
         />
         {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
         <ResultsScreen
+          displayItemDetails={this.displaySingleItem.bind(this)}
           showResultsPage={this.state.showRecordsPage}
           closeResultsPage={this.closeResultsPage.bind(this)}
         />
@@ -162,5 +182,6 @@ export default connect(mapStateToProps, {
   addNewDatabaseItem,
   queryDatabase,
   resetQuery,
-  getAllRecords
+  getAllRecords,
+  removeDatabaseItem
 })(Page);

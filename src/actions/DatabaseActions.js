@@ -3,27 +3,21 @@ import {
   INITIALIAZE_DATABASE_OBJECT,
   DATABASE_ITEMS_QUERY,
   RESET_DATABASE_QUERY,
-  DATABASE_ALL_ITEMS_QUERY
+  DATABASE_ALL_ITEMS_QUERY,
+  ADD_NEW_DATABASE_ITEM,
+  DATABASE_SINGE_ITEM_QUERY,
+  REMOVE_DATABASE_SINGLE_ITEM
 } from './types';
 import { DATABASE_NAME } from '../constants';
 import { createDatabaseSchema, realmDatabase } from '../lib/database';
-
-const createTitlesArray = databaseQuery => {
-  let titlesArray = [];
-  for (let i = 0; i < databaseQuery.length; i++ ) {
-    titlesArray.push(databaseQuery[i].title);
-  }
-  return titlesArray;
-}
 
 export const initializeDatabaseObject = () => {
   const databaseSchema = createDatabaseSchema();
   const realm = new Realm({schema: [databaseSchema]});
   const allRecordsQuery = realm.objects(DATABASE_NAME);
-  const titlesArray = createTitlesArray(allRecordsQuery);
   return {
     type: INITIALIAZE_DATABASE_OBJECT,
-    payload: { databaseSchema, allRecordsQuery, titlesArray }
+    payload: { databaseSchema, allRecordsQuery }
   }
 }
 
@@ -36,15 +30,33 @@ export const addNewDatabaseItem = (title, description) => {
         date: Date.now()
       });
     });
+    const items = realmDatabase.objects(DATABASE_NAME);
+    dispatch({
+      type: ADD_NEW_DATABASE_ITEM,
+      payload: items
+    })
   }
 }
 
+export const removeDatabaseItem = itemTitle => {
+  const items = realmDatabase.objects(DATABASE_NAME);
+  const itemToDelete = items.filtered(`title = "${itemTitle}"`);
+  realmDatabase.write(() => {
+    realmDatabase.delete(itemToDelete);
+  });
+  const updatedItems = realmDatabase.objects(DATABASE_NAME);
+  return {
+    type: REMOVE_DATABASE_SINGLE_ITEM,
+    payload: updatedItems
+  }
+}
+
+
 export const getAllRecords = () => {
   const items = realmDatabase.objects(DATABASE_NAME);
-  const titlesArray = createTitlesArray(items);
   return {
     type: DATABASE_ALL_ITEMS_QUERY,
-    payload: { items, titlesArray }
+    payload: items
   };
 }
 
@@ -56,11 +68,10 @@ export const queryDatabase = itemTitle => {
     queryItems[0] = record[0];
   }
   return {
-    type: DATABASE_ITEMS_QUERY,
+    type: DATABASE_SINGE_ITEM_QUERY,
     payload: queryItems
   };
 }
-
 
 export const resetQuery = () => {
   return {

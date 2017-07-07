@@ -6,20 +6,21 @@ import Items from './Items';
 class ResultsScreen extends Component {
   render() {
     return (
-      <View style={{marginTop: 22}}>
+      <View>
         <Modal
+          style={styles.container}
           animationType={"slide"}
           transparent={false}
           visible={this.props.showResultsPage}
-          onRequestClose={() => { }}
+          onRequestClose={this.props.closeResultsPage}
           >
          <View style={{marginTop: 22}}>
           <View>
-            <Text>List of All Added Items!</Text>
-
+            <Text style={styles.recordsMainLabel}>List of All Added Items!</Text>
             <ScrollView>
             <Items
-              items={this.props.titles}
+              items={this.props.all_records}
+              displayItemDetails={this.props.displayItemDetails}
               closeWindow={this.props.closeResultsPage}
             />
             </ScrollView>
@@ -36,17 +37,22 @@ const mapStateToProps = ({ database }) => {
 }
 
 const styles = {
+  container: {
+    flex: 1,
+    marginTop: 22,
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
   closeLabel: {
     flex: 1,
     textAlign: 'center',
     position: 'absolute',
     fontSize: 18,
+  },
+  recordsMainLabel: {
+    textAlign: 'center',
+    fontSize: 22
   }
 }
 
 export default connect(mapStateToProps)(ResultsScreen);
-
-            // <Text style={styles.closeLabel} onPress={() => this.props.closeResultsPage()}>Close me</Text>
-
-// onResetQuery={this.resetDatabaseQuery.bind(this)}
-// resetInput={this.resetInputValues.bind(this)}
