@@ -33,6 +33,7 @@ class Page extends Component {
 
   componentWillMount() {
     this.props.initializeDatabaseObject();
+    this.setState({ editItem: false });
   }
 
   clearTimeout() {
@@ -47,6 +48,7 @@ class Page extends Component {
         this.props.queryDatabase(text);
       }, 500)
     });
+    this.setState({ editItem: false });
   }
 
   // Default label rendering function
@@ -74,8 +76,8 @@ class Page extends Component {
   }
 
   editDatabaseItem(item) {
+    this.setState({ editItem: true });
     this.props.queryDatabase(item);
-    this.setState({ editItem: true })
   }
 
   // READ existing records and perform certain actions based on query results!
@@ -84,16 +86,29 @@ class Page extends Component {
     if (Object.keys(query).length === 0) {
       return (
         <NewItemForm
+          title={this.state.item}
+          description={''}
           onFormSubmit={this.storeFormValues.bind(this)}
           onValuesReset={this.resetInputValues.bind(this)}
-        >{this.state.item}
-        </NewItemForm>
+        />
       );
     } else {
+      if (Object.keys(query).length === 1 && this.state.editItem) {
+        const itemData = query[0];
+        return (
+          <NewItemForm
+            title={this.state.item}
+            description={itemData.content}
+            onFormSubmit={this.storeFormValues.bind(this)}
+            onValuesReset={this.resetInputValues.bind(this)}
+          />
+        )
+      }
       if (Object.keys(query).length === 1) {
         const itemData = query[0];
         return (
           <Item
+            onEdit={this.editDatabaseItem.bind(this)}
             onDelete={this.deleteDatabaseItem.bind(this)}
             title={itemData.title}
             content={itemData.content}
@@ -134,7 +149,7 @@ class Page extends Component {
           style={styles.listBottomButton}
           onPress={() => this.setState({ showRecordsPage: true })}
         >
-        Click me
+        Query All Records
         </Text>
       </View>
     );

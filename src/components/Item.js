@@ -12,10 +12,10 @@ class Item extends Component {
         <Text>{content}</Text>
         <Text>{cd.toString()}</Text>
         <View style={{  flexDirection: 'row', flexWrap: 'wrap' }}>
-          <Button onPress={() => console.log("Edit item")} style={styles.editButton} textStyle={{ color: 'white' }}>
+          <Button onPress={() => this.props.onEdit(title)} style={styles.editButton} textStyle={{ color: 'white' }}>
             Edit
           </Button>
-          <Button onPress={() => this.props.onDelete(title) } style={styles.removeButton} textStyle={{ color: 'white' }}>
+          <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: 'white' }}>
             Remove
           </Button>
         </View>

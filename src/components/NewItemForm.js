@@ -3,6 +3,11 @@ import { View, Text, TextInput } from 'react-native';
 import Button from 'apsl-react-native-button';
 
 class NewItemForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { description: this.props.description };
+  }
+
   state = {
     description: ''
   }
@@ -10,11 +15,11 @@ class NewItemForm extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.itemTitleLabel}>Item Title <Text style={{ fontWeight: 'bold' }}>{this.props.children}</Text></Text>
+        <Text style={styles.itemTitleLabel}>Item Title <Text style={{ fontWeight: 'bold' }}>{this.props.title}</Text></Text>
         <Text style={styles.descriptionLabel}>Description</Text>
         <TextInput
           multiline={true}
-          onChangeText={(text) => this.setState({ description: text }) }
+          onChangeText={(text) => this.setState({ description: text}) }
           value={this.state.description}
         />
         <View style={{  flexDirection: 'row', flexWrap: 'wrap' }}>

@@ -28,7 +28,7 @@ export const addNewDatabaseItem = (title, description) => {
         title: title,
         content: description,
         date: Date.now()
-      });
+      }, true);
     });
     const items = realmDatabase.objects(DATABASE_NAME);
     dispatch({
