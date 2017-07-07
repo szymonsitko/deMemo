@@ -67,7 +67,6 @@ const styles = {
   },
   buttons: {
     // Dimensions & positioning
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -77,6 +76,7 @@ const styles = {
     flex: 1,
     height: 35,
     marginRight: 2,
+    marginTop: 6,
     // Colors & styling
     borderColor: '#0099e6',
     borderWidth: 1.5,
@@ -86,6 +86,7 @@ const styles = {
     flex: 1,
     height: 35,
     marginLeft: 2,
+    marginTop: 6,
     // Colors & styling
     borderColor: '#e60000',
     borderWidth: 1.5,

@@ -6,9 +6,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Dimensions
 } from 'react-native';
 import { createTitlesArray } from '../lib/database';
+
+const { height, width } = Dimensions.get('window');
 
 class Items extends Component {
   constructor(props) {
@@ -29,13 +32,15 @@ class Items extends Component {
     )
   }
 
-  renderFooter() {
+  renderHeader() {
     return (
       <View>
         <TextInput
+          style={styles.searchItemsInput}
+          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder="Type to search from list"
           onChangeText={(input) => this.onUserTyping(input)}
         />
-        <Text style={styles.closeButton} onPress={() => this.props.closeWindow()}>Close</Text>
       </View>
     )
   }
@@ -63,12 +68,11 @@ class Items extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={styles.listViewContainer}>
         <ListView
-          style={styles.container}
           dataSource={this.state.dataSource}
           renderRow={(data) => this.renderRow(data)}
-          renderFooter={this.renderFooter.bind(this)}
+          renderHeader={this.renderHeader.bind(this)}
           enableEmptySections={true}
         />
       </ScrollView>
@@ -78,24 +82,45 @@ class Items extends Component {
 
 const styles = {
   container: {
+    // Dimensions & positioning
     flex: 1,
-    marginTop: 20,
+  },
+  listViewContainer: {
+    // Dimensions & positioning
+    marginTop: 6,
+    maxHeight: height * .8,
+  },
+  searchItemsInput: {
+    // Dimensions & positioning
+    width: width * .75,
+    height: 40,
+    borderWidth: 1.5,
+    marginTop: 2,
+    marginBottom: 2,
+    // Colors & styling
+    color: '#00001a',
+    borderBottomColor: '#484848'
   },
   addButton: {
+    // Dimensions & positioning
+    width: 100,
+    marginRight: 2,
+    // Colors & styling
     backgroundColor: '#33bbff',
     borderColor: '#0099e6',
-    width: 100,
-    marginRight: 2
   },
   singleRow: {
+    // Dimensions & positioning
     margin: 2,
+    // Colors & styling
     fontSize: 14
   },
-  closeButton: {
-    flex: 1,
-    textAlign: 'center',
-    fontSize: 18,
-  }
+  buttons: {
+    // Dimensions & positioning
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 };
 
 export default Items;

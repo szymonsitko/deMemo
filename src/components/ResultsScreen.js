@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, ScrollView } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableHighlight,
+  View,
+  ScrollView,
+  Dimensions
+} from 'react-native';
 import { connect } from 'react-redux';
+import Button from 'apsl-react-native-button';
 import Items from './Items';
+
+const { height, width } = Dimensions.get('window');
 
 class ResultsScreen extends Component {
   render() {
     return (
       <View>
         <Modal
-          style={styles.container}
           animationType={"slide"}
           transparent={false}
           visible={this.props.showResultsPage}
           onRequestClose={this.props.closeResultsPage}
           >
-         <View style={{marginTop: 22}}>
+         <View style={styles.container}>
           <View>
-            <Text style={styles.recordsMainLabel}>List of All Added Items!</Text>
-            <ScrollView>
+            <View style={styles.recordsContainer}>
+              <Text style={styles.recordsLabel}>List of Items</Text>
+            </View>
+            <ScrollView style={styles.itemsList}>
             <Items
               items={this.props.all_records}
               displayItemDetails={this.props.displayItemDetails}
-              closeWindow={this.props.closeResultsPage}
             />
             </ScrollView>
           </View>
@@ -38,21 +48,41 @@ const mapStateToProps = ({ database }) => {
 
 const styles = {
   container: {
+    // Dimensions & positioning
     flex: 1,
-    marginTop: 22,
     alignItems: 'center',
+    // Colors & styling
     backgroundColor: '#F5FCFF',
   },
-  closeLabel: {
-    flex: 1,
+  recordsContainer: {
+    // Dimensions & positioning
+    width: width,
+    // Colors & styling
+    borderBottomWidth: 2,
+    borderBottomColor: '#ff8000',
+    backgroundColor: '#484848',
+  },
+  recordsLabel: {
+    // Dimensions & positioning
     textAlign: 'center',
-    position: 'absolute',
-    fontSize: 18,
+    margin: 8,
+    marginTop: height * .025,
+    marginBottom: height * .025,
+    // Colors & styling
+    fontSize: 28,
+    color: 'white',
+    fontFamily: 'Lato-Regular',
+  },
+  itemsList: {
+    // Dimensions & positioning
+    marginLeft: width * .125,
+    marginRight: width * .125,
+    width: width * .75,
   },
   recordsMainLabel: {
     textAlign: 'center',
     fontSize: 22
-  }
+  },
 }
 
 export default connect(mapStateToProps)(ResultsScreen);
