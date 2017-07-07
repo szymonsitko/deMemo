@@ -21,12 +21,17 @@ import NewItemForm from '../components/NewItemForm';
 import Item from '../components/Item';
 import Items from '../components/Items';
 import ResultsScreen from '../components/ResultsScreen';
+import { GenericMessage } from '../components/GenericMessage';
+import { Facts } from '../components/Facts';
+import { FACTS } from '../constants';
+import { pickRandomFact } from '../lib/helpers';
 
 const { height, width } = Dimensions.get('window');
 
 class Page extends Component {
   state = {
     item: '',
+    fact: pickRandomFact(FACTS),
     showRecordsPage: false,
     editItem: false
   }
@@ -53,7 +58,12 @@ class Page extends Component {
 
   // Default label rendering function
   renderDefaultLabel() {
-    return <Text>Start typing to query history.</Text>;
+    return (
+      <View>
+        <GenericMessage />
+        <Facts fact={this.state.fact}/>
+      </View>
+    );
   }
 
   resetInputValues() {
@@ -108,6 +118,7 @@ class Page extends Component {
         const itemData = query[0];
         return (
           <Item
+            onClear={this.resetInputValues.bind(this)}
             onEdit={this.editDatabaseItem.bind(this)}
             onDelete={this.deleteDatabaseItem.bind(this)}
             title={itemData.title}
@@ -133,9 +144,12 @@ class Page extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Organiser</Text>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcome}>Organiser</Text>
+        </View>
         <TextInput
           style={styles.input}
+          underlineColorAndroid='rgba(0,0,0,0)'
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
@@ -146,7 +160,7 @@ class Page extends Component {
           closeResultsPage={this.closeResultsPage.bind(this)}
         />
         <Text
-          style={styles.listBottomButton}
+          style={styles.listBottomLabel}
           onPress={() => this.setState({ showRecordsPage: true })}
         >
         Query All Records
@@ -162,14 +176,30 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  welcomeContainer: {
+    backgroundColor: '#484848',
+    width: width,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ff8000',
+  },
   welcome: {
-    fontSize: 32,
+    fontSize: 38,
+    color: 'white',
     textAlign: 'center',
+    fontFamily: 'Lato-Regular',
     margin: 10,
-    marginTop: height * .05
+    marginTop: height * .025,
+    marginBottom: height * .025,
   },
   input: {
-    width: width * .75
+    // Dimensions & positioning
+    width: width * .75,
+    height: 40,
+    borderWidth: 1.5,
+    marginTop: height * .05,
+    // Colors
+    color: '#00001a',
+    borderBottomColor: '#484848'
   },
   addButton: {
     backgroundColor: '#ff4d4d',
@@ -177,14 +207,23 @@ const styles = {
     width: 100,
     marginLeft: 2
   },
-  listBottomButton: {
+  listBottomLabel: {
+    // Dimensions & positioning
     flex: 1,
+    fontSize: 20,
+    padding: 8,
     textAlign: 'center',
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    fontSize: 18,
+    // Styles
+    fontFamily: 'Lato-Regular',
+    borderTopWidth: 1,
+    borderTopColor: '#cc6600',
+    // Colors
+    backgroundColor: '#0d0d0d',
+    color: '#bfbfbf'
   }
 };
 
