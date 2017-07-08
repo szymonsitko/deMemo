@@ -35,10 +35,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* OrganiserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* OrganiserTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		A073A2490137424C94822C4A /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BCB6599E124BB6B3A049D5 /* libRealmReact.a */; };
-		3BF69742ED8D4FF5B1CCE39E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 732743E14ABE435F8E7AA9F3 /* libc++.tbd */; };
-		5B8C36C424F44553A99193F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 172E3DF5CB424BB1A69139E1 /* libz.tbd */; };
-		43F96070BA0546479AC17A5A /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C52742F8CBE424791ABB607 /* Lato-Regular.ttf */; };
+		888EA72A7A98480097E81A90 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B75E42AC13C84917BEAD1CA9 /* libRealmReact.a */; };
+		991D6B0220C64F4B92779558 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2C8F9BFAB7479889BB0A8B /* libc++.tbd */; };
+		60CA5F6615CA4E24AFEF0721 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEA7BF173C44B509D176A78 /* libz.tbd */; };
+		82D74F0598F44D17AD0A599A /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 653D6D49D20F448A89E6AB1A /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,11 +258,11 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		FC6DC4240FA1439794C5163E /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		80BCB6599E124BB6B3A049D5 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		732743E14ABE435F8E7AA9F3 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		172E3DF5CB424BB1A69139E1 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		5C52742F8CBE424791ABB607 /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		567FACB77BFD42B288D78C61 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B75E42AC13C84917BEAD1CA9 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1D2C8F9BFAB7479889BB0A8B /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		EDEA7BF173C44B509D176A78 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		653D6D49D20F448A89E6AB1A /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,9 +289,9 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				A073A2490137424C94822C4A /* libRealmReact.a in Frameworks */,
-				3BF69742ED8D4FF5B1CCE39E /* libc++.tbd in Frameworks */,
-				5B8C36C424F44553A99193F5 /* libz.tbd in Frameworks */,
+				888EA72A7A98480097E81A90 /* libRealmReact.a in Frameworks */,
+				991D6B0220C64F4B92779558 /* libc++.tbd in Frameworks */,
+				60CA5F6615CA4E24AFEF0721 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +458,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				FC6DC4240FA1439794C5163E /* RealmReact.xcodeproj */,
+				567FACB77BFD42B288D78C61 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -479,8 +479,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* OrganiserTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				CAD9CAAD3AB749729649A18F /* Frameworks */,
-				7652CF87529944ABB0F41703 /* Resources */,
+				41AD135252E145CFA7B21A76 /* Frameworks */,
+				80503C13926D48D38D629FF7 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -497,20 +497,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CAD9CAAD3AB749729649A18F /* Frameworks */ = {
+		41AD135252E145CFA7B21A76 /* Frameworks */ = {
 			isa = "PBXGroup";
 			children = (
-				732743E14ABE435F8E7AA9F3 /* libc++.tbd */,
-				172E3DF5CB424BB1A69139E1 /* libz.tbd */,
+				1D2C8F9BFAB7479889BB0A8B /* libc++.tbd */,
+				EDEA7BF173C44B509D176A78 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 			path = "";
 		};
-		7652CF87529944ABB0F41703 /* Resources */ = {
+		80503C13926D48D38D629FF7 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				5C52742F8CBE424791ABB607 /* Lato-Regular.ttf */,
+				653D6D49D20F448A89E6AB1A /* Lato-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -874,7 +874,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				43F96070BA0546479AC17A5A /* Lato-Regular.ttf in Resources */,
+				82D74F0598F44D17AD0A599A /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1008,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Organiser.app/Organiser";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1032,6 +1033,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Organiser.app/Organiser";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1108,6 +1110,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1141,6 +1144,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1169,6 +1173,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1193,6 +1198,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;

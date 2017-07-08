@@ -7,11 +7,15 @@ const { height, width } = Dimensions.get('window');
 class NewItemForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { description: this.props.description };
+    this.state = {
+      description: this.props.description,
+      formHeight: 35
+    };
   }
 
   state = {
-    description: ''
+    description: '',
+    formHeight: 35
   }
 
   render() {
@@ -20,19 +24,19 @@ class NewItemForm extends Component {
         <Text
           style={styles.itemTitleLabel}
         >
-          Create Item
+          Item
           <Text style={{ fontWeight: 'bold', color: '#cc6600' }}> {this.props.title}</Text>
         </Text>
         <TextInput
           multiline={true}
-          placeholder="Item description"
+          placeholder="Place item description here.."
           style={styles.inputField}
           onChangeText={(text) => this.setState({ description: text })}
           value={this.state.description}
         />
         <View style={styles.buttons}>
-          <Button onPress={() => this.props.onFormSubmit(this.state.description)} style={styles.addButton} textStyle={{ color: '#0099e6', }}>
-            Add
+          <Button onPress={() => this.props.onFormSubmit(this.state.description)} style={styles.saveButton} textStyle={{ color: '#0099e6', }}>
+            Save
           </Button>
           <Button onPress={() => this.props.onValuesReset()} style={styles.cancelButton} textStyle={{ color: '#e60000' }}>
             Cancel
@@ -63,7 +67,13 @@ const styles = {
   inputField: {
     // Dimensions & positioning
     marginBottom: 12,
-    marginTop: height * .075
+    marginTop: 6,
+    textAlignVertical: 'bottom',
+    height: 120,
+    // Colors & styling
+    backgroundColor: 'white',
+    borderWidth: 0.75,
+    borderColor: '#f2f2f2'
   },
   buttons: {
     // Dimensions & positioning
@@ -72,7 +82,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  addButton: {
+  saveButton: {
     // Dimensions & positioning
     flex: 1,
     height: 35,

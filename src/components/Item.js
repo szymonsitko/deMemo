@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, ScrollView } from 'react-native';
 import Button from 'apsl-react-native-button';
 
 const { height, width } = Dimensions.get('window');
@@ -9,24 +9,28 @@ class Item extends Component {
     const { title, content, date } = this.props;
     const cd = new Date(date);
     return (
-      <View style={styles.container}>
-        <Text style={styles.itemTitleLabel}>Item <Text style={{ fontWeight: 'bold', color: '#cc6600' }}>{title}</Text></Text>
-        {this.props.content ? <Text style={styles.itemContent}>{content}</Text> : <Text style={styles.noContentMessage}>No content added for this item!</Text>}
-        <Text style={styles.dateLabel}>{cd.toString()}</Text>
-        <View style={styles.buttons}>
-          <Button onPress={() => this.props.onEdit(title)} style={styles.editButton} textStyle={{ color: '#0099e6' }}>
-            Edit
-          </Button>
-          <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: '#e60000' }}>
-            Remove
-          </Button>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.container}>
+          <Text style={styles.itemTitleLabel}>Item <Text style={{ fontWeight: 'bold', color: '#cc6600' }}>{title}</Text></Text>
+          {this.props.content ? <Text style={styles.itemContent}>{content}</Text> : <Text style={styles.noContentMessage}>No content added for this item!</Text>}
+          <Text style={styles.dateLabel}>{cd.toString()}</Text>
+          <View style={styles.buttons}>
+            <Button onPress={() => this.props.onEdit(title)} style={styles.editButton} textStyle={{ color: '#0099e6' }}>
+              Edit
+            </Button>
+            <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: '#e60000' }}>
+              Remove
+            </Button>
+          </View>
+          <View style={styles.buttons}>
+            <Button onPress={() => this.props.onClear()} style={styles.clearButton} textStyle={{ color: '#00364d' }}>
+              Clear
+            </Button>
+          </View>
         </View>
-        <View style={styles.buttons}>
-          <Button onPress={() => this.props.onClear()} style={styles.clearButton} textStyle={{ color: '#00364d' }}>
-            Clear
-          </Button>
-        </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -95,6 +99,7 @@ const styles = {
     // Dimensions & positioning
     flex: 1,
     height: 35,
+    marginBottom: (42 + (height * .035)),
     // Colors & styling
     borderColor: '#00364d',
     borderWidth: 1.5,

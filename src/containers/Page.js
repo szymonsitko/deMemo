@@ -33,7 +33,7 @@ class Page extends Component {
     item: '',
     fact: pickRandomFact(FACTS),
     showRecordsPage: false,
-    editItem: false
+    editItem: false,
   }
 
   componentWillMount() {
@@ -68,12 +68,16 @@ class Page extends Component {
 
   resetInputValues() {
     this.setState({ item: '' });
+    this.refs['mainInput'].setNativeProps({text: ''});
   }
 
   // Saving new item into the database..
   storeFormValues(description) {
+    this.setState({ editItem: false });
     this.props.addNewDatabaseItem(this.state.item, description);
-    this.resetInputValues();
+    // Swap for query?
+    this.props.queryDatabase(this.state.item);
+    //Old code snippet
   }
 
   resetDatabaseQuery() {
@@ -148,12 +152,13 @@ class Page extends Component {
           <Text style={styles.welcome}>Organiser</Text>
         </View>
         <TextInput
+          ref={'mainInput'}
           style={styles.input}
           underlineColorAndroid='rgba(0,0,0,0)'
           placeholder="Type here your item name!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
-        {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
+          {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
         <ResultsScreen
           displayItemDetails={this.displaySingleItem.bind(this)}
           showResultsPage={this.state.showRecordsPage}

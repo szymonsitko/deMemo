@@ -25,9 +25,13 @@ class Items extends Component {
   }
 
   renderRow(data) {
+    const formattedDate = new Date(data.date);
     return (
-      <TouchableOpacity onPress={() => this.props.displayItemDetails(data)}>
-        <Text style={styles.singleRow}>{data}</Text>
+      <TouchableOpacity onPress={() => this.props.displayItemDetails(data.title)}>
+        <View>
+          <Text style={styles.singleRowTitle}>{data.title}</Text>
+          <Text style={styles.singleRowDate}>{formattedDate.toUTCString().replace("GMT", "")}</Text>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -43,8 +47,11 @@ class Items extends Component {
         this.setState({ input: text });
         let newDataStore = [];
         for (let i = 0; i < this.props.items.length; i++) {
+          let titleAndDate = {};
           if (this.props.items[i].title.contains(this.state.input)) {
-            newDataStore.push(this.props.items[i].title);
+            titleAndDate['title'] = this.props.items[i].title;
+            titleAndDate['date'] = this.props.items[i].date
+            newDataStore.push(titleAndDate);
           };
         };
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -97,15 +104,19 @@ const styles = {
     color: '#00001a',
     borderBottomColor: '#484848'
   },
-  singleRow: {
+  singleRowTitle: {
     // Dimensions & positioning
-    margin: 4,
+    margin: 2,
     // Colors & styling
     fontSize: 18,
     color: '#00364d',
     fontWeight: 'bold'
-
   },
+  singleRowDate: {
+    // Colors & styling
+    fontSize: 12,
+    marginBottom: 2,
+  }
 };
 
 export default Items;
