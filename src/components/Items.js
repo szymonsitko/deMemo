@@ -50,12 +50,12 @@ class Items extends Component {
           let titleAndDate = {};
           if (this.props.items[i].title.contains(this.state.input)) {
             titleAndDate['title'] = this.props.items[i].title;
-            titleAndDate['date'] = this.props.items[i].date
+            titleAndDate['date'] = this.props.items[i].date;
             newDataStore.push(titleAndDate);
           };
         };
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({ dataSource: ds.cloneWithRows(newDataStore)});
+        this.setState({ dataSource: ds.cloneWithRows(newDataStore) });
       }, 500)
     });
   }
@@ -106,7 +106,7 @@ const styles = {
   },
   singleRowTitle: {
     // Dimensions & positioning
-    margin: 2,
+    marginTop: 3,
     // Colors & styling
     fontSize: 18,
     color: '#00364d',
@@ -115,7 +115,8 @@ const styles = {
   singleRowDate: {
     // Colors & styling
     fontSize: 12,
-    marginBottom: 2,
+    marginBottom: 3,
+    padding: 2,
   }
 };
 

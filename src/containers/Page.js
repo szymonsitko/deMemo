@@ -46,6 +46,7 @@ class Page extends Component {
   }
 
   onUserTyping({ text }) {
+    text = text.replace("\"", "").replace("\\", "")
     this.clearTimeout();
     this.setState({
       timeout: setTimeout(() => {
@@ -141,6 +142,7 @@ class Page extends Component {
   displaySingleItem(itemName) {
     // Make sure that the result screen is closed, this is on case if function is
     // invoked from ResultsScreen Modal
+    itemName = itemName.replace("\"", "").replace("\\", "")
     this.closeResultsPage();
     this.onUserTyping({ text: itemName });
   }
