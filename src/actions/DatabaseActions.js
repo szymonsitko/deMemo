@@ -22,20 +22,18 @@ export const initializeDatabaseObject = () => {
 }
 
 export const addNewDatabaseItem = (title, description) => {
-  return (dispatch) => {
-    realmDatabase.write(() => {
+  realmDatabase.write(() => {
     savedItems = realmDatabase.create(DATABASE_NAME, {
-        title: title,
-        content: description,
-        date: Date.now()
-      }, true);
-    });
-    const items = realmDatabase.objects(DATABASE_NAME);
-    dispatch({
-      type: ADD_NEW_DATABASE_ITEM,
-      payload: items
-    })
-  }
+      title: title,
+      content: description,
+      date: Date.now()
+    }, true);
+  });
+  const items = realmDatabase.objects(DATABASE_NAME);
+  return {
+    type: ADD_NEW_DATABASE_ITEM,
+    payload: items
+  };
 }
 
 export const removeDatabaseItem = itemTitle => {

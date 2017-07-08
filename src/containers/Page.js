@@ -36,6 +36,7 @@ class Page extends Component {
     editItem: false,
   }
 
+  // Taking advantage of lifecycle methods
   componentWillMount() {
     this.props.initializeDatabaseObject();
     this.setState({ editItem: false });
@@ -45,6 +46,7 @@ class Page extends Component {
     clearInterval(this.state.timeout);
   }
 
+  // Acknowledge user input with little time delay
   onUserTyping({ text }) {
     text = text.replace("\"", "").replace("\\", "")
     this.clearTimeout();
@@ -76,9 +78,7 @@ class Page extends Component {
   storeFormValues(description) {
     this.setState({ editItem: false });
     this.props.addNewDatabaseItem(this.state.item, description);
-    // Swap for query?
     this.props.queryDatabase(this.state.item);
-    //Old code snippet
   }
 
   resetDatabaseQuery() {
@@ -179,24 +179,30 @@ class Page extends Component {
 
 const styles = {
   container: {
+    // Dimensions & positioning
     flex: 1,
     alignItems: 'center',
+    // Colors & styling
     backgroundColor: '#F5FCFF',
   },
   welcomeContainer: {
-    backgroundColor: '#484848',
+    // Dimensions & positioning
     width: width,
+    // Colors & styling
     borderBottomWidth: 2,
+    backgroundColor: '#484848',
     borderBottomColor: '#ff8000',
   },
   welcome: {
+    // Dimensions & positioning
     fontSize: 38,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Lato-Regular',
     margin: 10,
     marginTop: height * .025,
     marginBottom: height * .025,
+    // Colors & styling
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Lato-Regular',
   },
   input: {
     // Dimensions & positioning
