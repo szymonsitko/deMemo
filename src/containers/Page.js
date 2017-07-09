@@ -152,7 +152,7 @@ class Page extends Component {
       <View style={styles.container}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcome}>de<Text style={{ color: 'white' }}>Memo</Text></Text>
-          <Text style={styles.littleMessage}>Helps with organising everyday tasks.</Text>
+          <Text style={styles.littleMessage}>Helps to organise everyday tasks.</Text>
         </View>
         <TextInput
           ref={'mainInput'}
@@ -207,7 +207,7 @@ const styles = {
     // Dimensions & positioning
     fontSize: 14,
     padding: 8,
-    textAlign: 'right',
+    textAlign: 'center',
     // Colors & styling
     color: 'white',
   },
