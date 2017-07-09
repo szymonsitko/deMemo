@@ -13,12 +13,13 @@ class Item extends Component {
         <View style={styles.container}>
           <Text style={styles.itemTitleLabel}>Item <Text style={{ fontWeight: 'bold', color: '#cc6600' }}>{title}</Text></Text>
           {this.props.content ? <Text style={styles.itemContent}>{content}</Text> : <Text style={styles.noContentMessage}>No content added for this item!</Text>}
+          <Text style={styles.dateAddedLabel}>Added at:</Text>
           <Text style={styles.dateLabel}>{cd.toString()}</Text>
           <View style={styles.buttons}>
             <Button onPress={() => this.props.onEdit(title)} style={styles.editButton} textStyle={{ color: '#0099e6' }}>
               Edit
             </Button>
-            <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: '#e60000' }}>
+            <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: '#E84E38' }}>
               Remove
             </Button>
           </View>
@@ -53,19 +54,26 @@ const styles = {
   itemContent: {
     // Dimensions & positioning
     marginBottom: 6,
-    marginTop: height * .035
+    marginTop: height * .035,
+    // Colors & styling
+    fontSize: 16
   },
   noContentMessage: {
     // Dimensions & positioning
     marginBottom: 6,
     marginTop: height * .035,
     // Colors & styling
-    color: '#ff9980',
+    fontSize: 16,
+    color: '#E84E38',
+  },
+  dateAddedLabel: {
+    // Colors & styles
+    marginTop: height * .035,
+    fontWeight: 'bold'
   },
   dateLabel: {
     // Dimensions & positioning
     marginBottom: 12,
-    marginTop: height * .035
   },
   buttons: {
     // Dimensions & positioning
@@ -88,7 +96,7 @@ const styles = {
     height: 40,
     marginRight: 2,
     // Colors & styling
-    borderColor: '#e60000',
+    borderColor: '#E84E38',
     borderWidth: 2,
   },
   clearButton: {

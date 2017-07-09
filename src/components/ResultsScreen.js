@@ -58,18 +58,18 @@ const styles = {
     // Dimensions & positioning
     width: width,
     // Colors & styling
-    borderBottomWidth: 2,
-    borderBottomColor: '#ff8000',
-    backgroundColor: '#484848',
+    borderBottomWidth: 6,
+    borderBottomColor: '#f29a8d',
+    backgroundColor: '#E84E38',
   },
   recordsLabel: {
     // Dimensions & positioning
     textAlign: 'center',
-    margin: 8,
+    margin: 2,
     marginTop: height * .025,
     marginBottom: height * .025,
     // Colors & styling
-    fontSize: 28,
+    fontSize: 18,
     color: 'white',
     fontFamily: 'Lato-Regular',
   },

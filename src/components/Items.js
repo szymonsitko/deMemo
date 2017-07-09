@@ -75,6 +75,7 @@ class Items extends Component {
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(data) => this.renderRow(data)}
+            showsVerticalScrollIndicator={false}
             enableEmptySections={true}
           />
         </ScrollView>

@@ -41,7 +41,7 @@ class NewItemForm extends Component {
           <Button onPress={() => this.props.onFormSubmit(this.state.description)} style={styles.saveButton} textStyle={{ color: '#0099e6', fontWeight: 'bold' }}>
             Save
           </Button>
-          <Button onPress={() => this.props.onValuesReset()} style={styles.cancelButton} textStyle={{ color: '#e60000', fontWeight: 'bold' }}>
+          <Button onPress={() => this.props.onValuesReset()} style={styles.cancelButton} textStyle={{ color: '#E84E38', fontWeight: 'bold' }}>
             Cancel
           </Button>
         </View>
@@ -77,7 +77,9 @@ const styles = {
     // Colors & styling
     backgroundColor: 'white',
     borderWidth: 1.5,
-    borderColor: '#f2f2f2'
+    borderColor: '#f2f2f2',
+    color: 'black',
+    fontSize: 16
   },
   buttons: {
     // Dimensions & positioning
@@ -103,7 +105,7 @@ const styles = {
     marginLeft: 2,
     marginBottom: (42 + (height * .035)),
     // Colors & styling
-    borderColor: '#e60000',
+    borderColor: '#E84E38',
     borderWidth: 2,
   },
 }

@@ -142,7 +142,7 @@ class Page extends Component {
   displaySingleItem(itemName) {
     // Make sure that the result screen is closed, this is on case if function is
     // invoked from ResultsScreen Modal
-    itemName = itemName.replace("\"", "").replace("\\", "")
+    itemName = itemName.replace("\"", "").replace("\\", "");
     this.closeResultsPage();
     this.onUserTyping({ text: itemName });
   }
@@ -151,7 +151,7 @@ class Page extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcome}>Organiser</Text>
+          <Text style={styles.welcome}>de<Text style={{ color: '#ff8000' }}>Org</Text></Text>
         </View>
         <TextInput
           ref={'mainInput'}
@@ -170,7 +170,7 @@ class Page extends Component {
           style={styles.listBottomLabel}
           onPress={() => this.setState({ showRecordsPage: true })}
         >
-        Query All Records
+        All Records List
         </Text>
       </View>
     );
@@ -224,8 +224,8 @@ const styles = {
   listBottomLabel: {
     // Dimensions & positioning
     flex: 1,
-    fontSize: 20,
-    padding: 8,
+    fontSize: 18,
+    paddingTop: 12,
     textAlign: 'center',
     position: 'absolute',
     left: 0,
@@ -233,11 +233,11 @@ const styles = {
     bottom: 0,
     // Styles
     fontFamily: 'Lato-Regular',
-    borderTopWidth: 1,
-    borderTopColor: '#cc6600',
+    borderTopWidth: 6,
+    borderTopColor: '#f29a8d',
     // Colors
-    backgroundColor: '#0d0d0d',
-    color: '#bfbfbf'
+    backgroundColor: '#E84E38',
+    color: 'white',
   }
 };
 
