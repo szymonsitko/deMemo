@@ -17,7 +17,7 @@ export const GenericMessage = () => {
 const styles = {
   genericLabel: {
     // Dimensions & positioning
-    marginTop: height * .03,
+    marginTop: height * .04,
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',

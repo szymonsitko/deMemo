@@ -53,27 +53,27 @@ const styles = {
   },
   itemContent: {
     // Dimensions & positioning
-    marginBottom: 6,
-    marginTop: height * .035,
+    marginBottom: 2,
+    marginTop: height * .1,
     // Colors & styling
-    fontSize: 16
+    fontSize: 20
   },
   noContentMessage: {
     // Dimensions & positioning
-    marginBottom: 6,
-    marginTop: height * .035,
+    marginBottom: 2,
+    marginTop: height * .1,
     // Colors & styling
     fontSize: 16,
     color: '#E84E38',
   },
   dateAddedLabel: {
     // Colors & styles
-    marginTop: height * .035,
+    marginTop: height * .02,
     fontWeight: 'bold'
   },
   dateLabel: {
     // Dimensions & positioning
-    marginBottom: 12,
+    marginBottom: 20,
   },
   buttons: {
     // Dimensions & positioning

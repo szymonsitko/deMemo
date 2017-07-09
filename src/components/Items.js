@@ -97,7 +97,7 @@ const styles = {
   searchItemsInput: {
     // Dimensions & positioning
     width: width * .75,
-    height: 44,
+    height: 48,
     borderWidth: 2,
     marginTop: 12,
     marginBottom: 8,
@@ -105,21 +105,21 @@ const styles = {
     color: '#00001a',
     borderBottomColor: '#484848',
     backgroundColor: 'white',
-    fontSize: 16,
+    fontSize: 18,
   },
   singleRowTitle: {
     // Dimensions & positioning
-    marginTop: 3,
+    marginTop: 4,
     // Colors & styling
-    fontSize: 18,
+    fontSize: 20,
     color: '#00364d',
     fontWeight: 'bold'
   },
   singleRowDate: {
     // Colors & styling
-    fontSize: 12,
-    marginBottom: 3,
-    padding: 2,
+    fontSize: 14,
+    marginBottom: 4,
+    padding: 3,
   }
 };
 

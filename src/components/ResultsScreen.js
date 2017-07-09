@@ -69,7 +69,7 @@ const styles = {
     marginTop: height * .025,
     marginBottom: height * .025,
     // Colors & styling
-    fontSize: 18,
+    fontSize: 22,
     color: 'white',
     fontFamily: 'Lato-Regular',
   },

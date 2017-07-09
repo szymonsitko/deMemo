@@ -151,7 +151,8 @@ class Page extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcome}>de<Text style={{ color: '#ff8000' }}>Org</Text></Text>
+          <Text style={styles.welcome}>de<Text style={{ color: 'white' }}>Memo</Text></Text>
+          <Text style={styles.littleMessage}>Helps with organising everyday tasks.</Text>
         </View>
         <TextInput
           ref={'mainInput'}
@@ -189,27 +190,34 @@ const styles = {
     // Dimensions & positioning
     width: width,
     // Colors & styling
-    borderBottomWidth: 2,
-    backgroundColor: '#484848',
-    borderBottomColor: '#ff8000',
+    borderBottomWidth: 8,
+    backgroundColor: '#E84E38',
+    borderBottomColor: '#f29a8d',
   },
   welcome: {
     // Dimensions & positioning
-    fontSize: 42,
+    fontSize: 46,
     marginTop: height * .015,
-    marginBottom: height * .025,
     // Colors & styling
-    color: 'white',
+    color: '#721b0d',
     textAlign: 'center',
     fontFamily: 'Lato-Regular',
+  },
+  littleMessage: {
+    // Dimensions & positioning
+    fontSize: 14,
+    padding: 8,
+    textAlign: 'right',
+    // Colors & styling
+    color: 'white',
   },
   input: {
     // Dimensions & positioning
     width: width * .825,
-    height: 44,
+    height: 48,
     borderWidth: 2,
     marginTop: height * .03,
-    fontSize: 16,
+    fontSize: 18,
     // Colors
     color: '#00001a',
     borderBottomColor: '#484848',
@@ -225,7 +233,7 @@ const styles = {
     // Dimensions & positioning
     flex: 1,
     fontSize: 18,
-    paddingTop: 12,
+    paddingTop: 14,
     textAlign: 'center',
     position: 'absolute',
     left: 0,
