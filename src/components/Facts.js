@@ -19,7 +19,7 @@ const styles = {
   didYouKnowLabel: {
     // Dimensions & positioning
     marginTop: 34,
-    fontSize: 14,
+    fontSize: 18,
     textAlign: 'center',
     // Colors & styling
     fontWeight: 'bold',
@@ -27,7 +27,7 @@ const styles = {
   },
   didYouKnowContent: {
     // Dimensions & positioning
-    marginTop: 12,
+    marginTop: 14,
     textAlign: 'center',
     width: width * .75,
   }

@@ -9,9 +9,7 @@ class Item extends Component {
     const { title, content, date } = this.props;
     const cd = new Date(date);
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.itemTitleLabel}>Item <Text style={{ fontWeight: 'bold', color: '#cc6600' }}>{title}</Text></Text>
           {this.props.content ? <Text style={styles.itemContent}>{content}</Text> : <Text style={styles.noContentMessage}>No content added for this item!</Text>}
@@ -26,7 +24,7 @@ class Item extends Component {
           </View>
           <View style={styles.buttons}>
             <Button onPress={() => this.props.onClear()} style={styles.clearButton} textStyle={{ color: '#00364d' }}>
-              Clear
+              Clear Item
             </Button>
           </View>
         </View>
@@ -38,15 +36,15 @@ class Item extends Component {
 const styles = {
   container: {
     // Dimensions & positioning
-    width: width * .65,
+    width: width * .85,
     paddingLeft: 4,
     paddingRight: 4,
     // Colors & styles
   },
   itemTitleLabel: {
     // Dimensions & positioning
-    marginTop: height * .035,
-    fontSize: 16,
+    marginTop: height * .01,
+    fontSize: 22,
     textAlign: 'center',
     fontWeight: 'bold',
     // Colors
@@ -78,31 +76,29 @@ const styles = {
   editButton: {
     // Dimensions & positioning
     flex: 1,
-    height: 35,
+    height: 40,
     marginRight: 2,
-    marginTop: 6,
     // Colors & styling
     borderColor: '#0099e6',
-    borderWidth: 1.5,
+    borderWidth: 2,
   },
   removeButton: {
     // Dimensions & positioning
     flex: 1,
-    height: 35,
-    marginLeft: 2,
-    marginTop: 6,
+    height: 40,
+    marginRight: 2,
     // Colors & styling
     borderColor: '#e60000',
-    borderWidth: 1.5,
+    borderWidth: 2,
   },
   clearButton: {
     // Dimensions & positioning
     flex: 1,
-    height: 35,
+    height: 40,
     marginBottom: (42 + (height * .035)),
     // Colors & styling
     borderColor: '#00364d',
-    borderWidth: 1.5,
+    borderWidth: 2,
   }
 }
 

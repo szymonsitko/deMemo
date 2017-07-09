@@ -90,19 +90,21 @@ const styles = {
   },
   listViewContainer: {
     // Dimensions & positioning
-    marginTop: 6,
+    marginTop: 2,
     maxHeight: height * .7,
   },
   searchItemsInput: {
     // Dimensions & positioning
     width: width * .75,
-    height: 40,
-    borderWidth: 1.5,
+    height: 44,
+    borderWidth: 2,
     marginTop: 12,
     marginBottom: 8,
     // Colors & styling
     color: '#00001a',
-    borderBottomColor: '#484848'
+    borderBottomColor: '#484848',
+    backgroundColor: 'white',
+    fontSize: 16,
   },
   singleRowTitle: {
     // Dimensions & positioning

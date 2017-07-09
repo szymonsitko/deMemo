@@ -195,9 +195,8 @@ const styles = {
   },
   welcome: {
     // Dimensions & positioning
-    fontSize: 38,
-    margin: 10,
-    marginTop: height * .025,
+    fontSize: 42,
+    marginTop: height * .015,
     marginBottom: height * .025,
     // Colors & styling
     color: 'white',
@@ -206,13 +205,15 @@ const styles = {
   },
   input: {
     // Dimensions & positioning
-    width: width * .75,
-    height: 40,
-    borderWidth: 1.5,
-    marginTop: height * .05,
+    width: width * .825,
+    height: 44,
+    borderWidth: 2,
+    marginTop: height * .03,
+    fontSize: 16,
     // Colors
     color: '#00001a',
-    borderBottomColor: '#484848'
+    borderBottomColor: '#484848',
+    backgroundColor: 'white'
   },
   addButton: {
     backgroundColor: '#ff4d4d',
