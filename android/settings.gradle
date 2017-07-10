@@ -1,4 +1,4 @@
-rootProject.name = 'Organiser'
+rootProject.name = 'deMemo'
 include ':realm'
 project(':realm').projectDir = new File(rootProject.projectDir, '../node_modules/realm/android')
 

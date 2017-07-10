@@ -1,4 +1,4 @@
-package com.organiser;
+package com.szymonsitko.dememo;
 
 import android.app.Application;
 

@@ -158,7 +158,7 @@ class Page extends Component {
           ref={'mainInput'}
           style={styles.input}
           underlineColorAndroid='rgba(0,0,0,0)'
-          placeholder="Type here your item name!"
+          placeholder="Type here your item title!"
           onChangeText={(text) => this.onUserTyping({text})}
         />
           {this.state.item ? this.renderItem() : this.renderDefaultLabel()}
