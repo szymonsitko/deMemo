@@ -14,17 +14,29 @@ class Item extends Component {
           <Text style={styles.itemTitleLabel}>Item <Text style={{ fontWeight: 'bold', color: '#cc6600' }}>{title}</Text></Text>
           {this.props.content ? <Text style={styles.itemContent}>{content}</Text> : <Text style={styles.noContentMessage}>No content added for this item!</Text>}
           <Text style={styles.dateAddedLabel}>Added at:</Text>
-          <Text style={styles.dateLabel}>{cd.toString()}</Text>
+          <Text style={styles.dateLabel}>{cd.toUTCString().replace("GMT", "")}</Text>
           <View style={styles.buttons}>
-            <Button onPress={() => this.props.onEdit(title)} style={styles.editButton} textStyle={{ color: '#0099e6' }}>
+            <Button
+              onPress={() => this.props.onEdit(title)}
+              style={styles.editButton}
+              textStyle={{ color: 'white', fontWeight: 'bold' }}
+            >
               Edit
             </Button>
-            <Button onPress={() => this.props.onDelete(title)} style={styles.removeButton} textStyle={{ color: '#E84E38' }}>
+            <Button
+              onPress={() => this.props.onDelete(title)}
+              style={styles.removeButton}
+              textStyle={{ color: 'white', fontWeight: 'bold' }}
+            >
               Remove
             </Button>
           </View>
           <View style={styles.buttons}>
-            <Button onPress={() => this.props.onClear()} style={styles.clearButton} textStyle={{ color: '#00364d' }}>
+            <Button
+              onPress={() => this.props.onClear()}
+              style={styles.clearButton}
+              textStyle={{ color: 'white', fontWeight: 'bold' }}
+            >
               Clear Item
             </Button>
           </View>
@@ -54,7 +66,7 @@ const styles = {
   itemContent: {
     // Dimensions & positioning
     marginBottom: 2,
-    marginTop: height * .1,
+    marginTop: height * .025,
     // Colors & styling
     fontSize: 20
   },
@@ -87,8 +99,9 @@ const styles = {
     height: 40,
     marginRight: 2,
     // Colors & styling
-    borderColor: '#0099e6',
-    borderWidth: 2,
+    borderColor: '#E84E38',
+    backgroundColor: '#ec725f',
+    borderWidth: 3,
   },
   removeButton: {
     // Dimensions & positioning
@@ -96,8 +109,9 @@ const styles = {
     height: 40,
     marginRight: 2,
     // Colors & styling
-    borderColor: '#E84E38',
-    borderWidth: 2,
+    borderColor: '#0099e6',
+    backgroundColor: '#1ab2ff',
+    borderWidth: 3,
   },
   clearButton: {
     // Dimensions & positioning
@@ -105,8 +119,9 @@ const styles = {
     height: 40,
     marginBottom: (42 + (height * .035)),
     // Colors & styling
-    borderColor: '#00364d',
-    borderWidth: 2,
+    borderColor: '#005980',
+    backgroundColor: '#005980',
+    borderWidth: 3,
   }
 }
 

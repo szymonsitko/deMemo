@@ -18,7 +18,7 @@ export const Facts = props => {
 const styles = {
   didYouKnowLabel: {
     // Dimensions & positioning
-    marginTop: height * .05,
+    marginTop: height * .16,
     fontSize: 20,
     textAlign: 'center',
     // Colors & styling
@@ -27,7 +27,7 @@ const styles = {
   },
   didYouKnowContent: {
     // Dimensions & positioning
-    marginTop: 18,
+    marginTop: 20,
     textAlign: 'center',
     width: width * .75,
   }

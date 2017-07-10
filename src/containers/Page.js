@@ -152,7 +152,7 @@ class Page extends Component {
       <View style={styles.container}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcome}>de<Text style={{ color: 'white' }}>Memo</Text></Text>
-          <Text style={styles.littleMessage}>Helps to organise everyday tasks.</Text>
+          <Text style={styles.littleMessage}>Helps to organise everyday tasks</Text>
         </View>
         <TextInput
           ref={'mainInput'}
@@ -214,26 +214,20 @@ const styles = {
   input: {
     // Dimensions & positioning
     width: width * .825,
-    height: 48,
+    height: 52,
     borderWidth: 2,
     marginTop: height * .03,
-    fontSize: 18,
+    fontSize: 22,
     // Colors
     color: '#00001a',
     borderBottomColor: '#484848',
     backgroundColor: 'white'
   },
-  addButton: {
-    backgroundColor: '#ff4d4d',
-    borderColor: '#e60000',
-    width: 100,
-    marginLeft: 2
-  },
   listBottomLabel: {
     // Dimensions & positioning
     flex: 1,
     fontSize: 18,
-    paddingTop: 14,
+    padding: 8,
     textAlign: 'center',
     position: 'absolute',
     left: 0,
@@ -241,8 +235,6 @@ const styles = {
     bottom: 0,
     // Styles
     fontFamily: 'Lato-Regular',
-    borderTopWidth: 6,
-    borderTopColor: '#f29a8d',
     // Colors
     backgroundColor: '#E84E38',
     color: 'white',
